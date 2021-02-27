@@ -1,0 +1,55 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "brace-style": [
+      "error",
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "operator-linebreak": [
+      "error",
+      "after"
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "no-unused-vars": "warn",
+    "no-var": "error",
+    "consistent-return": "error",
+    "no-param-reassign": "error",
+    "vars-on-top": "error",
+    "camelcase": "error",
+    "prefer-destructuring": "warn",
+    "no-nested-ternary": "warn",
+    "no-continue": "warn",
+    "no-useless-escape": "warn",
+    "max-len": [
+      "error",
+      { "code": 125 }
+    ],
+    "no-console": "warn",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ]
+  }
+}
