@@ -30,34 +30,19 @@
       "error",
       "never"
     ],
-    "no-unused-vars": "off",
-    "no-underscore-dangle": "off",
-    "no-var": [
-      "off"
-    ],
-    "one-var": [
-      "off"
-    ],
-    "global-require": "off",
-    "no-plusplus": "off",
-    "consistent-return": "off",
-    "no-shadow": "off",
-    "no-param-reassign": "off",
-    "vars-on-top": "off",
-    "camelcase": "off",
-    "no-restricted-syntax": "off",
-    "radix": "off",
-    "prefer-rest-params": "off",
-    "no-buffer-constructor": "off",
-    "prefer-destructuring": "off",
-    "no-prototype-builtins": "off",
-    "no-nested-ternary": "off",
+    "no-unused-vars": "warn",
+    "no-var": "error",
+    "consistent-return": "error",
+    "no-param-reassign": "error",
+    "vars-on-top": "error",
+    "camelcase": "error",
+    "prefer-destructuring": "warn",
+    "no-nested-ternary": "warn",
     "no-continue": "warn",
     "no-useless-escape": "warn",
-    "func-names": "off",
     "max-len": [
       "error",
-      { "code": 100 }
+      { "code": 125 }
     ],
     "no-console": "warn",
     "no-multiple-empty-lines": [
@@ -65,6 +50,6 @@
       {
         "max": 1
       }
-    ],
+    ]
   }
 }
