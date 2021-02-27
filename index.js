@@ -20,9 +20,6 @@ mongoose.connect(process.env.DATABASE_URL, {
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
   })
   .catch(error => console.log(error));
-// const db = mongoose.connection;
-// db.on('error', error => console.log(error));
-// db.once('open', () => console.log('Connected to mongoose'));
 
 app.use(cors());
 app.use(bodyParser.json());
