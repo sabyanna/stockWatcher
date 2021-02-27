@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.post('/',
   (req, res, next) => {
-    console.log(req.body);
+    console.log(req.body, 'hi');
     res.json({message: 'success'})
   }
 );
