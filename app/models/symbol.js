@@ -11,7 +11,7 @@ const SymbolSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
-}, { timestamps: true })
+}, { timestamps: true });
 
 const Symbol = mongoose.model('Symbol', SymbolSchema);
 

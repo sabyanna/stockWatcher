@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const Symbol = require('../models/symbol')
+const Symbol = require('../models/symbol');
 
 router.post('/',
   (req, res) => {
     const symbol = new Symbol({
       name: req.body.symbol
-    })
+    });
 
     symbol.save()
       .then(result => {
