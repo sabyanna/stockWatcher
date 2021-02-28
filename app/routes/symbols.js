@@ -10,7 +10,7 @@ router.post('/',
   (req, res) => res.json(req.symbol)
 );
 
-router.get('/',
+router.get('/:userId',
   getSymbolsOfUser,
   (req, res) =>res.json(req.symbols)
 );

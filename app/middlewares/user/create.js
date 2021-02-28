@@ -7,10 +7,12 @@ const create = (req, res, next) => {
     userName
   });
 
-  newUser.save()
+  return newUser.save()
     .then(user => {
-      req.user = user;
-      next();
+      const { _id } = user;
+      req.userId = _id;
+  
+      return next();
     })
     .catch(error => {
       res.status(500).json({ error });

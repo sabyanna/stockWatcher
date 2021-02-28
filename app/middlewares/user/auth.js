@@ -13,6 +13,10 @@ const auth = (req, res, next) => {
       if (users.length === 0) {
         res.status(400).json({ error: 'Incorrect username' });
       }
+
+      const [{ _id }] = users;
+      req.userId = _id;
+      
       return next();
     })
     .catch(error => {

@@ -9,12 +9,12 @@ const authUser = require('../middlewares/user/auth');
 router.post('/register',
   checkIfUsernameAvailable,
   createUser,
-  (req, res) => res.json(req.user)
+  (req, res) => res.json({ userId: req.userId })
 );
 
 router.post('/login',
   authUser,
-  (req, res) => res.json({ success: 'success' })
+  (req, res) => res.json({ userId: req.userId })
 );
 
 module.exports = router;
