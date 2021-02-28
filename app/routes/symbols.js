@@ -4,11 +4,12 @@ const Symbol = require('../models/symbol')
 
 router.post('/',
   (req, res) => {
-    const symbol = new Symbol({
-      name: req.body.symbol
-    })
+    const { symbol } = req.body;
+    const newSymbol = new Symbol({
+      name: symbol.toUpperCase()
+    });
 
-    symbol.save()
+    newSymbol.save()
       .then(result => {
         res.send(result);
       })
