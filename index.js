@@ -7,6 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const symbols = require('./app/routes/symbols');
 const logger = require('./app/middlewares/logger');
+const users = require('./app/routes/users');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -26,3 +27,4 @@ app.use(bodyParser.json());
 
 app.use(logger);
 app.use('/', symbols);
+app.use('/user', users);
