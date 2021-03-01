@@ -38,7 +38,7 @@ const getStockDataOfUserSymbols = (req, res, next) => {
             open: key[1]['1. open'],
             close: key[1]['4. close']
           };
-        });
+        }).reverse();
 
         return {
           name,
