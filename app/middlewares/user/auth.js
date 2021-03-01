@@ -9,14 +9,9 @@ const auth = (req, res, next) => {
 
   User.find({ userName })
     .exec()
-    .then(users => {
-      if (users.length === 0) {
-        res.status(400).json({ error: 'Incorrect username' });
-      }
-      return next();
-    })
-    .catch(error => {
-      res.status(500).json({ error });
+    .then(() => next())
+    .catch(() => {
+      res.status(400).json({ error: 'Incorrect username' });
     });
 };
 
