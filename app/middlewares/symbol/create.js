@@ -2,18 +2,24 @@ const Symbol = require('../../models/symbol');
 
 const create = (req, res, next) => {
   const { symbol } = req.body;
+  const { userId } = req.params;
+
+  if (!userId) {
+    return res.status(500).json({ error: 'userId missing' });
+  }
 
   const newSymbol = new Symbol({
-    name: symbol.toUpperCase()
+    name: symbol.toUpperCase(),
+    ownerId: userId
   });
 
-  newSymbol.save()
+  return newSymbol.save()
     .then(symbol => {
       req.symbol = symbol;
-      next();
+      return next();
     })
     .catch(error => {
-      res.status(500).json({ error });
+      return res.status(500).json({ error });
     });
 };
 

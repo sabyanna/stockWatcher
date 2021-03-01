@@ -1,7 +1,7 @@
 const Symbol = require('../../models/symbol');
 
 const getSymbolsOfUser = (req, res, next) => {
-  Symbol.find()
+  Symbol.find({ ownerId: req.params.userId })
     .then(symbols => {
       req.symbols = symbols;
       next();

@@ -5,12 +5,12 @@ const router = express.Router();
 const createSymbol = require('../middlewares/symbol/create');
 const getSymbolsOfUser = require('../middlewares/symbol/getSymbolsOfUser');
 
-router.post('/',
+router.post('/:userId',
   createSymbol,
   (req, res) => res.json(req.symbol)
 );
 
-router.get('/',
+router.get('/:userId',
   getSymbolsOfUser,
   (req, res) =>res.json(req.symbols)
 );

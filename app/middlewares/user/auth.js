@@ -9,9 +9,15 @@ const auth = (req, res, next) => {
 
   User.find({ userName })
     .exec()
-    .then(() => next())
+    .then(users => {
+      const [ { _id } ] = users;
+
+      req.userId = _id;
+
+      return next();
+    })
     .catch(() => {
-      res.status(400).json({ error: 'Incorrect username' });
+      res.status(500).json({ error: 'user not found' });
     });
 };
 
