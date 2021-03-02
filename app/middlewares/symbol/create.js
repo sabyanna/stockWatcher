@@ -1,10 +1,11 @@
 const Symbol = require('../../models/symbol');
 
 const create = (req, res, next) => {
-  const { symbol, userId } = req.body;
+  const { symbol } = req.body;
+  const { userId } = req.params;
 
-  if (!symbol || symbol === '' || !userId) {
-    return res.status(500);
+  if (!userId) {
+    return res.status(500).json({ error: 'userId missing' });
   }
 
   const newSymbol = new Symbol({
@@ -14,7 +15,7 @@ const create = (req, res, next) => {
 
   return newSymbol.save()
     .then(symbol => {
-      req.symbol = symbol;
+      req.symbols = [symbol];
       return next();
     })
     .catch(error => {

@@ -7,15 +7,14 @@ const getSymbolsOfUser = (req, res, next) => {
     res.status(500).json({ error: 'Missing userId' });
   }
 
-  Symbol.find({
-    ownerId: userId
-  }).then(symbols => {
+  return Symbol.find({ ownerId: userId })
+    .then(symbols => {
       req.symbols = symbols;
-      next();
+      return next();
     })
     .catch(error => {
-      res.status(500).json({ error });
+      return res.status(500).json({ error });
     });
-};
+  };
 
 module.exports = getSymbolsOfUser;

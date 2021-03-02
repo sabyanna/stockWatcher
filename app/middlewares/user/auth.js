@@ -10,17 +10,14 @@ const auth = (req, res, next) => {
   User.find({ userName })
     .exec()
     .then(users => {
-      if (users.length === 0) {
-        res.status(400).json({ error: 'Incorrect username' });
-      }
+      const [ { _id } ] = users;
 
-      const [{ _id }] = users;
       req.userId = _id;
-      
+
       return next();
     })
-    .catch(error => {
-      res.status(500).json({ error });
+    .catch(() => {
+      res.status(500).json({ error: 'user not found' });
     });
 };
 
