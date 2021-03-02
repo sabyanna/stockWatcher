@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const getStockDataOfUserSymbols = (req, res, next) => {
+const getLatestStockDataOfSymbols = (req, res, next) => {
   const { symbols } = req;
 
   if (!symbols) {
@@ -15,21 +15,20 @@ const getStockDataOfUserSymbols = (req, res, next) => {
     return new Promise((resolve, reject) => {
       fetch(url)
         .then(res => res.json())
-        .then(stock => {
-          const { name, stockInfo } = stock;
+        .then(stockInfo => {
           const timeSeries = stockInfo['Time Series (Daily)'];
 
-          const formattedTimeSeries = Object.entries(timeSeries).map(key => {
-            return {
-              date: key[0],
-              open: key[1]['1. open'],
-              close: key[1]['4. close']
-            };
-          }).reverse();
+          const latestTimeSeries = timeSeries[Object.keys(timeSeries)[0]];
+
+          const stock = {
+            date: Object.keys(timeSeries)[0],
+            open: latestTimeSeries['1. open'],
+            close: latestTimeSeries['4. close']
+          };
 
           resolve({
-            name,
-          timeSeries: formattedTimeSeries
+            stockInfo: stock,
+            name: symbol.name
           });
         })
         .catch(err => reject(err));
@@ -38,12 +37,12 @@ const getStockDataOfUserSymbols = (req, res, next) => {
    });
 
   return Promise.all(requests)
-    .then(symbols => {
-      req.symbols = symbols;
+    .then(data => {
+      req.symbols = data;
       return next();
     }).catch(() => {
       return res.status(500);
     });
 };
 
-module.exports = getStockDataOfUserSymbols;
+module.exports = getLatestStockDataOfSymbols;

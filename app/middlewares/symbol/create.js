@@ -15,7 +15,7 @@ const create = (req, res, next) => {
 
   return newSymbol.save()
     .then(symbol => {
-      req.symbol = symbol;
+      req.symbols = [symbol];
       return next();
     })
     .catch(error => {

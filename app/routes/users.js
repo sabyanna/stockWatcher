@@ -7,7 +7,8 @@ const createUser = require('../middlewares/user/create');
 const authUser = require('../middlewares/user/auth');
 const createSymbol = require('../middlewares/symbol/create');
 const getSymbolsOfUser = require('../middlewares/symbol/getSymbolsOfUser');
-const getStockDataOfUserSymbols = require('../middlewares/symbol/getStockDataOfUserSymbols');
+const getLatestStockDataOfSymbols = require('../middlewares/symbol/getLatestStockDataOfSymbols');
+const getStockDataOfSymbol = require('../middlewares/symbol/getStockDataOfSymbol');
 
 router.post('/register',
   checkIfUsernameAvailable,
@@ -22,24 +23,25 @@ router.post('/login',
 
 router.post('/:userId/symbols',
   createSymbol,
-  (req, res) => res.json(req.symbol)
+  getLatestStockDataOfSymbols,
+  (req, res) => res.json(req.symbols[0])
 );
 
 router.get('/:userId/symbols',
   getSymbolsOfUser,
-  getStockDataOfUserSymbols,
+  getLatestStockDataOfSymbols,
   (req, res) => res.json(req.symbols)
 );
 
 router.get('/:userId/symbols/:symbolName',
   (req, res, next) => {
     const { symbolName } = req.params;
-    req.symbols = [{ name: symbolName }];
+    req.symbol = { name: symbolName };
 
     return next();
   },
-  getStockDataOfUserSymbols,
-  (req, res) => res.json(req.symbols)
+  getStockDataOfSymbol,
+  (req, res) => res.json(req.symbol)
 );
 
 module.exports = router;
